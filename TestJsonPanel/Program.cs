@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
+using TestJsonPanel.Data;
 
 namespace TestJsonPanel
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
+            const string panelFile = "3НСНг-Б1.2-419.294.42-3.json";
+            var json = File.ReadAllText(panelFile);
+            var panel = JsonConvert.DeserializeObject<Panel>(json);
+            Console.Write(JsonConvert.SerializeObject(panel, Formatting.Indented));
+            Console.Read();
         }
     }
 }
